@@ -18,6 +18,31 @@ production data. Placeholder labels such as `SOURCE_A`, `ASSET_001`, and
 `provider_slug` are used so the workflow can be studied without exposing the
 original automation context.
 
+## Who Can Reuse This Repository?
+
+This repository is intended for:
+
+- developers building source-neutral document collection pipelines
+- researchers who need a safe public example of daily report automation
+- analysts separating collection, parsing, normalization, and reconciliation logic
+- maintainers documenting private automation patterns without exposing targets
+- students learning how to publish a sanitized automation method
+
+It is a public template, not a production crawler. Real targets, credentials,
+private URLs, and production records should remain in private configuration or
+deployment repositories.
+
+## Open Automation Value
+
+The project is shared as a sanitized reproducibility template for automation
+workflows. It demonstrates:
+
+- how to define sources through placeholder configuration
+- how to keep collection, parsing, and reconciliation as separate stages
+- how to use synthetic data for public examples
+- how to document safety boundaries before publishing automation code
+- how to build a dry-run-first workflow for downstream review
+
 ## Repository Layout
 
 ```text
@@ -44,7 +69,7 @@ src/asset_report_automation/
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+pip install -e .
 
 python -m asset_report_automation.cli fetch --config config\sources.example.yml --out data\raw
 python -m asset_report_automation.cli parse --input data\raw --out data\parsed\records.csv
@@ -53,6 +78,14 @@ python -m asset_report_automation.cli reconcile --input data\parsed\records.csv 
 
 The default configuration is a template. Replace placeholder selectors and
 endpoints only in a private working copy.
+
+## Reproducibility Checklist
+
+1. Start with `config/sources.example.yml`.
+2. Keep source identifiers generic in public examples.
+3. Run `python -m asset_report_automation.cli dry-run --input examples\sample_reports.csv`.
+4. Review `docs/sanitization_policy.md` before committing changes.
+5. Store real downloaded files and logs outside the public repository.
 
 ## Design Goals
 
@@ -69,3 +102,13 @@ endpoints only in a private working copy.
 - production scheduling metadata
 - real report PDFs or crawled datasets
 - real issuer, analyst, or provider names
+
+## Citation
+
+If this template helps your own automation documentation, cite the repository
+using `CITATION.cff` or the GitHub citation button.
+
+## Contributing
+
+Issues and pull requests are welcome for generic template improvements,
+validation checks, and documentation. See `CONTRIBUTING.md`.

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this sanitized automation template, please cite it using the metadata below."
+title: "Asset Report Automation Methods"
+type: software
+authors:
+  - family-names: "Lee"
+    given-names: "Jiyeong"
+repository-code: "https://github.com/yzyzero0098/asset-report-automation-methods"
+abstract: "Sanitized reference templates for daily asset-report collection, parsing, reconciliation, and reproducibility workflows."
+license: MIT
+date-released: 2026-06-11
