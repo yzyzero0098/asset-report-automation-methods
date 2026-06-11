@@ -1,0 +1,24 @@
+run:
+  timezone: "Asia/Seoul"
+  request_delay_seconds: 1.0
+  max_items_per_source: 20
+  dry_run: true
+
+sources:
+  - source_id: "SOURCE_A"
+    provider_slug: "source_a"
+    enabled: true
+    mode: "html_list"
+    listing_url: "https://example.invalid/source-a/reports"
+    link_selector: "a[href$='.pdf']"
+    title_selector: ".report-title"
+    date_selector: ".report-date"
+
+  - source_id: "SOURCE_B"
+    provider_slug: "source_b"
+    enabled: false
+    mode: "api_list"
+    listing_url: "https://example.invalid/source-b/api/reports"
+    link_json_path: "$.items[*].file_url"
+    title_json_path: "$.items[*].title"
+    date_json_path: "$.items[*].date"

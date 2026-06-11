@@ -1,0 +1,3 @@
+run_date,source_id,asset_id,report_date,title,author_label,opinion,current_value,target_value,file_path,file_hash,source_url,status
+2026-01-15,SOURCE_A,ASSET_001,2026-01-15,Sample asset update,AUTHOR_01,neutral,1000,1200,data/raw/20260115/20260115_SOURCE_A_ASSET_001_001.pdf,hash_placeholder_001,https://example.invalid/report/001,ready
+2026-01-15,SOURCE_B,ASSET_002,2026-01-14,Sample sector note,AUTHOR_02,positive,2500,3000,data/raw/20260115/20260115_SOURCE_B_ASSET_002_001.pdf,hash_placeholder_002,https://example.invalid/report/002,ready
