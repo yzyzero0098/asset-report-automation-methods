@@ -18,6 +18,23 @@ production data. Placeholder labels such as `SOURCE_A`, `ASSET_001`, and
 `provider_slug` are used so the workflow can be studied without exposing the
 original automation context.
 
+## Overview
+
+`asset-report-automation-methods` is a source-neutral automation template for
+publicly documenting report collection, parsing, normalization, reconciliation,
+and dry-run validation. It is designed to show the method without exposing real
+targets, accounts, provider names, issuer names, or production data.
+
+```mermaid
+flowchart LR
+    A["Source config"] --> B["Collect candidate links"]
+    B --> C["Download or dry-run"]
+    C --> D["Parse metadata"]
+    D --> E["Normalize records"]
+    E --> F["Reconcile duplicates"]
+    F --> G["Ready table for review"]
+```
+
 ## Who Can Reuse This Repository?
 
 This repository is intended for:
@@ -64,12 +81,17 @@ src/asset_report_automation/
   reconcile.py              # duplicate and readiness checks
 ```
 
-## Quick Start
+## Installation
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e .
+```
+
+## Usage
+
+```powershell
 
 python -m asset_report_automation.cli fetch --config config\sources.example.yml --out data\raw
 python -m asset_report_automation.cli parse --input data\raw --out data\parsed\records.csv
@@ -78,6 +100,25 @@ python -m asset_report_automation.cli reconcile --input data\parsed\records.csv 
 
 The default configuration is a template. Replace placeholder selectors and
 endpoints only in a private working copy.
+
+## Example
+
+Run the synthetic sample through the dry-run check:
+
+```powershell
+python -m asset_report_automation.cli dry-run --input examples\sample_reports.csv
+```
+
+Expected output:
+
+```text
+ready=2 rejected=0
+```
+
+## Related publication
+
+No publication is attached. This repository is a sanitized methods template for
+automation reproducibility and can be cited as software.
 
 ## Reproducibility Checklist
 
@@ -107,6 +148,17 @@ endpoints only in a private working copy.
 
 If this template helps your own automation documentation, cite the repository
 using `CITATION.cff` or the GitHub citation button.
+
+If you use this repository, please cite:
+
+```text
+Lee J. Asset Report Automation Methods. GitHub repository.
+https://github.com/yzyzero0098/asset-report-automation-methods
+```
+
+## License
+
+This repository is released under the MIT License. See `LICENSE`.
 
 ## Contributing
 
